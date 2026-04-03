@@ -1,0 +1,57 @@
+teleop_twist_joy:
+  ros__parameters:
+    require_enable_button: true
+
+    # LB 按住才允许出速度
+    enable_button: 9
+
+    # RB 为 turbo 档
+    enable_turbo_button: 10
+
+    # Logitech F710 + game_controller_node 标准轴编号
+    # 0 = LEFTX, 1 = LEFTY, 2 = RIGHTX
+    axis_linear:
+      x: 1
+      y: 0
+      z: -1
+
+    axis_angular:
+      yaw: 2
+      pitch: -1
+      roll: -1
+
+    # 常速档
+    # 前推 LEFTY 通常是负值，所以这里取负，让“前推=前进”
+    scale_linear:
+      x: 0.35
+      y: 0.35
+      z: 0.0
+
+    scale_angular:
+      yaw: 0.80
+      pitch: 0.0
+      roll: 0.0
+
+    # Turbo 档
+    scale_linear_turbo:
+      x: 0.70
+      y: 0.70
+      z: 0.0
+
+    scale_angular_turbo:
+      yaw: 1.20
+      pitch: 0.0
+      roll: 0.0
+
+    # 你这个底盘不是差速车，这个保持 false
+    inverted_reverse: false
+
+    publish_stamped_twist: false
+
+# 这份配置的控制逻辑是：
+
+# 左摇杆上下：linear.x
+# 左摇杆左右：linear.y
+# 右摇杆左右：angular.z
+# 按住 LB 才使能
+# 按住 RB 进入高速档
